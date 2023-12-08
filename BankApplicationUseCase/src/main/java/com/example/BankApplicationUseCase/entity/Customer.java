@@ -19,13 +19,13 @@ import java.util.List;
 @Table(name = "Customer_details")
 public class Customer {
     @Id
-    private String custId;
-    private String fname;
-    private String lname;
+    private String customerId;
+    private String fName;
+    private String lName;
     private Integer age;
     private String gender;
     private Long number;
-    private Long adar;
+    private Long adarCard;
     private String email;
     @OneToMany
     @Cascade(CascadeType.ALL)

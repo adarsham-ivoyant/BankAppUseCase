@@ -4,6 +4,7 @@ import com.example.BankApplicationUseCase.entity.Account;
 import com.example.BankApplicationUseCase.entity.Customer;
 import com.example.BankApplicationUseCase.entity.Transactions;
 import com.example.BankApplicationUseCase.entity.enums.AccountType;
+import com.example.BankApplicationUseCase.entity.enums.TransactionType;
 import com.example.BankApplicationUseCase.repository.AccountDB;
 import com.example.BankApplicationUseCase.repository.CustomerDB;
 import com.example.BankApplicationUseCase.repository.TransactionDB;
@@ -24,7 +25,7 @@ import static org.mockito.Mockito.when;
 public class ServiceTest {
 
     @Autowired
-    private ServiceI serviceI;
+    private BankAppService serviceI;
 
     @MockBean
     private CustomerDB customerDB;
@@ -37,21 +38,20 @@ public class ServiceTest {
 
     @Test
     public void saveCustomerTest(){
-        Account account=new Account(123,2000.0, AccountType.Savings,"SBI");
+        Account account=new Account(123,2000.0, AccountType.SAVINGS,"SBI");
         String customerId= UUID.randomUUID().toString();
         Customer user=new Customer(customerId,"temp","t",21,"male", 123453243L,32134L,"t@gmail.com", List.of(account));
         when(customerDB.save(user)).thenReturn(user);
 
-        Customer cust=customerDB.save(user);
-        assertEquals(user.getCustId(),cust.getCustId());
-
+        Customer customer=customerDB.save(user);
+        assertEquals(user.getCustomerId(),customer.getCustomerId());
 
     }
 
 
     @Test
     public void saveTransactionTest(){
-        Transactions t=new Transactions(123456L, LocalDateTime.now(),5000.0,123456L);
+        Transactions t=new Transactions(123456L, LocalDateTime.now(),123L,321L, TransactionType.CREDIT,TransactionType.DEBIT);
         when(transactionDB.save(t)).thenReturn(t);
 
         Transactions t1=transactionDB.save(t);
@@ -62,11 +62,11 @@ public class ServiceTest {
     @Test
     void testGetAllCustomer() {
 
-        Account account=new Account(123,2000.0, AccountType.Savings,"SBI");
+        Account account=new Account(123,2000.0, AccountType.SAVINGS,"SBI");
         String customerId= UUID.randomUUID().toString();
         Customer user1=new Customer(customerId,"temp","t",21,"male", 123453243L,32134L,"t@gmail.com", List.of(account));
 
-        Account account1=new Account(124,5000.0, AccountType.Current,"SBI");
+        Account account1=new Account(124,5000.0, AccountType.CURRENT,"SBI");
         String customerId1= UUID.randomUUID().toString();
         Customer user2=new Customer(customerId1,"temp2","tt",22,"female", 12345543L,343213544L,"tt@gmail.com", List.of(account));
         List<Customer> mockCustomers = Arrays.asList(user1, user2);

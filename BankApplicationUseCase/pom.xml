@@ -61,6 +61,12 @@
 			<artifactId>spring-rabbit-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.8</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -83,8 +89,12 @@
 				<version>0.8.7</version>
 				<configuration>
 					<excludes>
-						<exclude>**/entity/*</exclude>
-						<exclude>**/JMS/*</exclude>
+						<exclude>com/example/BankApplicationUseCase/entity/Account</exclude>
+						<exclude>com/example/BankApplicationUseCase/entity/Customer</exclude>
+						<exclude>com/example/BankApplicationUseCase/entity/Transactions</exclude>
+<!--						<exclude>com/example/BankApplicationUseCase/entity/**</exclude>-->
+<!--						<exclude>com/ivoyant/SpringBootTelecommunication/Entity/SubEntities/*</exclude>-->
+<!--						<exclude>com/ivoyant/SpringBootTelecommunication/Entity/Enums/*</exclude>-->
 
 					</excludes>
 				</configuration>

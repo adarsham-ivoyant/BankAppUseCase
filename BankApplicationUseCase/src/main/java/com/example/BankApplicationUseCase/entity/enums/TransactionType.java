@@ -1,6 +1,6 @@
 package com.example.BankApplicationUseCase.entity.enums;
 
-public enum AccountType {
-    SAVINGS,
-    CURRENT
+public enum TransactionType {
+    CREDIT,
+    DEBIT
 }

@@ -1,5 +1,7 @@
 package com.example.BankApplicationUseCase.entity;
 
+import com.example.BankApplicationUseCase.entity.enums.AccountType;
+import com.example.BankApplicationUseCase.entity.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +18,12 @@ public class Transactions {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long transactionId;
     private LocalDateTime transactionDate;
-    private Double amount;
-    private Long accNum;
+    private Long fromAccNum;
+    private Long toAccNum;
+    @Enumerated(EnumType.STRING)
+    private TransactionType transactionTypeSender;
+    @Enumerated(EnumType.STRING)
+    private TransactionType transactionTypeReciver;
+
 
 }
